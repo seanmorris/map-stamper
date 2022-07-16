@@ -22,16 +22,16 @@ document.addEventListener('DOMContentLoaded', function() {
 	};
 
 	pool.onTimeout(500, () => pool.args.stamps.push(
-		{ id: 1,  grid: 'CONQ001', x:  25, y: 25, used: ''},
-		{ id: 2,  grid: 'CONQ002', x:  18, y: 16, used: ''},
-		{ id: 3,  grid: 'CONQ003', x:  19, y: 25, used: ''},
-		{ id: 4,  grid: 'CONQ004', x:  19, y: 13, used: ''},
-		{ id: 5,  grid: 'CONQ005', x:  25, y: 21, used: ''},
-		{ id: 6,  grid: 'CONQ006', x:  8,  y: 22, used: ''},
-		{ id: 7,  grid: 'CONQ007', x:  6,  y: 12, used: ''},
-		{ id: 8,  grid: 'CONQ008', x:  4,  y: 7 , used: ''},
-		{ id: 9,  grid: 'CONQ009', x:  6,  y: 10, used: ''},
-		{ id: 10, grid: 'CONQ010', x:  4,  y: 9 , used: ''},
+		{ id: 1,  grid: 'CONQ001', x:  25, y: 25 },
+		{ id: 2,  grid: 'CONQ002', x:  18, y: 16 },
+		{ id: 3,  grid: 'CONQ003', x:  19, y: 25 },
+		{ id: 4,  grid: 'CONQ004', x:  19, y: 13 },
+		{ id: 5,  grid: 'CONQ005', x:  25, y: 21 },
+		{ id: 6,  grid: 'CONQ006', x:  8,  y: 22 },
+		{ id: 7,  grid: 'CONQ007', x:  6,  y: 12 },
+		{ id: 8,  grid: 'CONQ008', x:  4,  y: 7  },
+		{ id: 9,  grid: 'CONQ009', x:  6,  y: 10 },
+		{ id: 10, grid: 'CONQ010', x:  4,  y: 9  },
 	));
 
 	pool.args.stamps.bindTo((v,k,t,d,p) => grids.set(v.grid, v));
