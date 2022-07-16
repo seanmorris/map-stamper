@@ -6,7 +6,7 @@
 					<div cv-each = "tags:stamp:t" xmlns="http://www.w3.org/1999/xhtml">
 						<div class = "map-tag"
 							draggable = "true"
-							cv-on = "dragstart(event, stamp); drop:cancel"
+							cv-on = "dragstart(event, stamp);"
 							style = "--x:[[stamp.x]];--y:[[stamp.y]];--l:[[stamp.l]];--t:[[stamp.t]];" xmlns="http://www.w3.org/1999/xhtml">
 							<p xmlns="http://www.w3.org/1999/xhtml">[[stamp.id]]</p>
 							<button xmlns="http://www.w3.org/1999/xhtml" cv-on = "click:delete(event, stamp)"></button>

@@ -14,6 +14,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	maps.args.maps = new Bag;
 
+	maps.change = event => {
+		let reader = new FileReader();
+		reader.onload = event => maps.args.maps.add(new MapView({map:event.target.result}, grids));
+		reader.readAsDataURL(event.target.files[0]);
+		event.target.value = null;
+	};
+
 	pool.onTimeout(500, () => pool.args.stamps.push(
 		{ id: 1,  grid: 'CONQ001', x:  25, y: 25, used: ''},
 		{ id: 2,  grid: 'CONQ002', x:  18, y: 16, used: ''},
@@ -29,23 +36,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	pool.args.stamps.bindTo((v,k,t,d,p) => grids.set(v.grid, v));
 
-	maps.change = event => {
-		console.log(event.target.files[0]);
-		let reader = new FileReader();
-		reader.onload = event => maps.args.maps.add(new MapView({map:event.target.result}, grids));
-		reader.readAsDataURL(event.target.files[0]);
-		event.target.value = null;
-	};
-
-	const image = new Image();
-	image.src = '/crosshairs.png';
+	const crosshair = new Image();
+	crosshair.src = '/crosshairs.png';
 
 	pool.dragstart = (event, stamp) => {
-		event.dataTransfer.setDragImage(image, 15, 15);
+		event.dataTransfer.setDragImage(crosshair, 15, 15);
 		event.dataTransfer.setData('text/plain', stamp.grid);
 	};
 
 	pool.render(document.body);
 	maps.render(document.body);
-
 });
