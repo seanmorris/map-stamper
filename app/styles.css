@@ -1,0 +1,106 @@
+html, body {
+	height: 100%;
+	margin: 0;
+}
+
+body {
+	display: flex;
+	flex-direction: row;
+}
+
+div.stamp-pool-list {
+	display: flex;
+	flex-direction: column;
+}
+
+div.stamp-pool-item {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	user-select: none;
+}
+
+div.stamp-pool-item[data-used=true] {
+	color: grey;
+}
+
+div.map {
+	overflow: hidden;
+}
+
+div.map-holder {
+	position: relative;
+	background-image :var(--map);
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: calc(1px * var(--width));
+	height: calc(1px * var(--height));
+	margin: auto;
+}
+
+div.map-tag {
+	--unit: 4px;
+	position: absolute;
+	background-color: #0f0;
+	left: calc(100% * var(--l));
+	top: calc(100% * var(--t));
+	width: calc(calc(var(--unit) * var(--x)) * var(--scale));
+	height: calc(calc(var(--unit) * var(--y)) * var(--scale));
+	transform: rotate(calc(360deg * var(--rotation))) scale(1);
+	transform-origin: 0 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5rem;
+	border: 1px solid black;
+
+}
+
+div.map-tag:hover {
+
+}
+
+
+div.map-tag button {
+	position: absolute;
+	top: -0.75em;
+	right: -0.75em;
+	border: 0;
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 50%;
+	padding: 0;
+	background-color: black;
+	display: none;
+}
+
+div.map-tag:hover button {
+	display: initial;
+}
+
+div.map-controls {
+	display: flex;
+	flex-direction: column;
+}
+
+div.map-buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+html div.map > img,
+html div.map > canvas {
+	display: none;
+}
+
+div.map > svg {
+	width: calc(1px * var(--width));
+	height: calc(1px * var(--height));
+}
+
+div.map > img {
+	width: calc(1px * var(--width));
+	height: calc(1px * var(--height));
+}

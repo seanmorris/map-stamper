@@ -1,0 +1,39 @@
+<div class = "map" style = "--width:[[width]];--height:[[height]];">
+	<svg xmlns="http://www.w3.org/2000/svg" cv-ref = "svg">
+		<foreignobject x="0" y="0" width = "100%" height = "100%">
+			<div class = "map" xmlns="http://www.w3.org/1999/xhtml" style = "--width:[[width]];--height:[[height]];">
+				<div class = "map-holder" style = "--map:url([[map]]); --rotation:[[rotation]]; --scale:[[scale]];" cv-on = "drop;dragover;" cv-ref = "map" xmlns="http://www.w3.org/1999/xhtml">
+					<div cv-each = "tags:stamp:t" xmlns="http://www.w3.org/1999/xhtml">
+						<div class = "map-tag"
+							draggable = "true"
+							cv-on = "dragstart(event, stamp); drop:cancel"
+							style = "--x:[[stamp.x]];--y:[[stamp.y]];--l:[[stamp.l]];--t:[[stamp.t]];" xmlns="http://www.w3.org/1999/xhtml">
+							<p xmlns="http://www.w3.org/1999/xhtml">[[stamp.id]]</p>
+							<button xmlns="http://www.w3.org/1999/xhtml" cv-on = "click:delete(event, stamp)"></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</foreignobject>
+	</svg>
+
+	<img cv-ref = "image" src = "[[rendered]]">
+
+	<canvas cv-ref = "canvas" width = "[[width]]" height = "[[height]]"></canvas>
+</div>
+
+<div class = "map-buttons">
+	<button cv-on = "click:saveImage">save</button>
+	<button cv-on = "click:reset">reset</button>
+</div>
+
+<div class = "map-controls">
+	<label>
+		<span>rotation</span>
+		<input type = "range" cv-bind = "rotation" min =  "-0.5" max = "0.5" step = "0.001">
+	</label>
+	<label>
+		<span>scale</span>
+		<input type = "range" cv-bind = "scale"    min =  "0" max = "3" step = "0.001">
+	</label>
+</div>
