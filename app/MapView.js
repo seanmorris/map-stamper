@@ -121,16 +121,18 @@ export class MapView extends View
 		const image = this.tags.image;
 
 		return new Promise(accept => {
-			image.node.addEventListener('load', event => requestAnimationFrame(() => {
+			image.node.addEventListener('load', event => {
 
 				const canvas  = this.tags.canvas;
 				const context = canvas.getContext('2d');
 
-				context.clearRect(0, 0, canvas.width, canvas.height);
-				context.drawImage(image.node, 0, 0);
+				setTimeout(() => {
+					context.clearRect(0, 0, canvas.width, canvas.height);
+					context.drawImage(image.node, 0, 0);
 
-				canvas.toBlob(blob => accept(blob));
-			}));
+					canvas.toBlob(blob => accept(blob));
+				}, 100);
+			});
 		});
 	}
 
