@@ -75,6 +75,8 @@ export class MapView extends View
 
 	drop(event)
 	{
+		event.preventDefault();
+
 		const mapRect = this.tags.map.node.getBoundingClientRect();
 
 		const name  = event.dataTransfer.getData("text/plain");
