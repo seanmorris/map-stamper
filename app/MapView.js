@@ -85,6 +85,8 @@ export class MapView extends View
 		stamp.l = (event.clientX + -mapRect.x + -15) / mapRect.width;
 		stamp.t = (event.clientY + -mapRect.y + -15) / mapRect.height;
 
+		stamp.r = stamp.r ?? 0;
+
 		this.args.tags.add(stamp);
 	}
 
@@ -99,6 +101,8 @@ export class MapView extends View
 		this.args.rendered = '';
 
 		const svg = this.tags.svg.cloneNode(true);
+
+		svg.addEventListener('load', event => console.log(event));
 
 		let style = '';
 
@@ -116,23 +120,24 @@ export class MapView extends View
 
 		svg.prepend(styleSheet);
 
-		this.args.rendered = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg.outerHTML);
-
-		const image = this.tags.image;
+		const image = this.tags.image.node;
 
 		return new Promise(accept => {
-			image.node.addEventListener('load', event => {
+			image.addEventListener('load', event => {
 
 				const canvas  = this.tags.canvas;
 				const context = canvas.getContext('2d');
 
-				setTimeout(() => {
-					context.clearRect(0, 0, canvas.width, canvas.height);
-					context.drawImage(image.node, 0, 0);
+				context.clearRect(0, 0, canvas.width, canvas.height);
 
+				setTimeout(() => {
+					context.drawImage(image, 0, 0);
 					canvas.toBlob(blob => accept(blob));
 				}, 100);
-			});
+
+			}, {once: true});
+
+			image.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg.outerHTML);
 		});
 	}
 
@@ -174,6 +179,16 @@ export class MapView extends View
 
 			link.click();
 		});
+	}
+
+	rotateLeft(event, stamp)
+	{
+		stamp.r -= 0.25;
+	}
+
+	rotateRight(event, stamp)
+	{
+		stamp.r += 0.25;
 	}
 
 	delete(event, stamp)

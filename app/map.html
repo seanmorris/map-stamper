@@ -1,4 +1,4 @@
-<div class = "map" style = "--width:[[width]];--height:[[height]];">
+<div class = "map" cv-attr = "width;height">
 	<svg xmlns="http://www.w3.org/2000/svg" width = "[[width]]" height = "[[height]]" cv-ref = "svg">
 		<foreignobject x="0" y="0" width = "100%" height = "100%">
 			<div class = "map" xmlns="http://www.w3.org/1999/xhtml" style = "--width:[[width]];--height:[[height]];">
@@ -7,18 +7,20 @@
 						<div class = "map-tag"
 							draggable = "true"
 							cv-on = "dragstart(event, stamp);"
-							style = "--x:[[stamp.x]];--y:[[stamp.y]];--l:[[stamp.l]];--t:[[stamp.t]];" xmlns="http://www.w3.org/1999/xhtml">
+							style = "--x:[[stamp.x]];--y:[[stamp.y]];--l:[[stamp.l]];--t:[[stamp.t]];--r:[[stamp.r]]" xmlns="http://www.w3.org/1999/xhtml">
 							<p xmlns="http://www.w3.org/1999/xhtml">[[stamp.id]]</p>
-							<button xmlns="http://www.w3.org/1999/xhtml" cv-on = "click:delete(event, stamp)"></button>
+							<button data-type = "close" xmlns="http://www.w3.org/1999/xhtml" cv-on = "click:delete(event, stamp)"></button>
+							<div class = "buttons">
+								<button data-type = "rotate-left" xmlns="http://www.w3.org/1999/xhtml" cv-on = "click:rotateLeft(event, stamp)"></button>
+								<button data-type = "rotate-right" xmlns="http://www.w3.org/1999/xhtml" cv-on = "click:rotateRight(event, stamp)"></button>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</foreignobject>
 	</svg>
-
 	<img cv-ref = "image" src = "[[rendered]]">
-
 	<canvas cv-ref = "canvas" width = "[[width]]" height = "[[height]]"></canvas>
 </div>
 
