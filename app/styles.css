@@ -11,6 +11,9 @@ body {
 div.stamp-pool-list {
 	display: flex;
 	flex-direction: column;
+	overflow: auto;
+	position: sticky;
+	top: 0;
 }
 
 div.stamp-pool-item {
@@ -22,6 +25,13 @@ div.stamp-pool-item {
 
 div.stamp-pool-item[data-used=true] {
 	color: grey;
+}
+
+div.map-list {
+	overflow: auto;
+	position: sticky;
+	top: 0;
+	flex: 1;
 }
 
 div.map {
@@ -57,11 +67,6 @@ div.map-tag {
 
 }
 
-div.map-tag:hover {
-
-}
-
-
 div.map-tag button {
 	position: absolute;
 	top: -0.75em;
@@ -73,6 +78,10 @@ div.map-tag button {
 	padding: 0;
 	background-color: black;
 	display: none;
+	background-image: url(/x.svg);
+	background-repeat: no-repeat;
+	background-size: 50%;
+	background-position: center;
 }
 
 div.map-tag:hover button {
@@ -82,6 +91,28 @@ div.map-tag:hover button {
 div.map-controls {
 	display: flex;
 	flex-direction: column;
+}
+
+div.map-controls label {
+	display: flex;
+	flex-direction: row;
+}
+
+div.map-controls label span {
+	min-width: 5em;
+	text-align: right;
+}
+div.map-controls input[type=number] {
+	width: 5em;
+	text-align: right;
+}
+
+div.map-controls input[type=range] {
+	flex: 1;
+}
+
+div.map-buttons button {
+	margin: 0.5rem;
 }
 
 div.map-buttons {

@@ -80,7 +80,6 @@ export class MapView extends View
 		const name  = event.dataTransfer.getData("text/plain");
 		const stamp = this.grids.get(name);
 
-
 		stamp.l = (event.clientX + -mapRect.x + -15) / mapRect.width;
 		stamp.t = (event.clientY + -mapRect.y + -15) / mapRect.height;
 
@@ -99,48 +98,59 @@ export class MapView extends View
 	{
 		const svg = this.tags.svg.cloneNode(true);
 
-		fetch('/app.css')
-		.then(response => response.text())
-		.then(response => {
+		let style = '';
 
-			const styles = document.createElement('style');
+		for(const sheet of document.styleSheets)
+		{
+			for(const rule of sheet.cssRules)
+			{
+				style += rule.cssText;
+			}
+		}
 
-			styles.innerHTML = response;
+		const styleSheet = document.createElement('style');
 
-			svg.prepend(styles);
+		styleSheet.innerHTML = style;
 
-			this.args.rendered = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg.outerHTML);
+		svg.prepend(styleSheet);
 
-			const image = this.tags.image;
+		this.args.rendered = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg.outerHTML);
 
-			image.node.addEventListener('load', event => {
+		const image = this.tags.image;
 
-				const canvas = this.tags.canvas;
+		image.node.addEventListener('load', event => {
 
-				const context = canvas.getContext('2d');
+			const canvas = this.tags.canvas;
 
-				// context.clearRect(0, 0, canvas.width, canvas.height);
+			const context = canvas.getContext('2d');
 
-				context.drawImage(image.node, 0, 0);
+			context.clearRect(0, 0, canvas.width, canvas.height);
 
-				canvas.toBlob(blob => {
-					showSaveFilePicker({
-						suggestedName: 'grid-locations.png',
-						types: [{
-							description: 'PNG file',
-							accept: {'image/png': ['.png']},
-						}],
-					}).then(handle => {
-						return handle.createWritable();
-					}).then(writableStream => {
-						return writableStream.write(blob).then(()=> writableStream.close());
-					});
+			context.drawImage(image.node, 0, 0);
 
+			canvas.toBlob(blob => {
+				showSaveFilePicker({
+					suggestedName: 'grid-locations.png',
+					types: [{
+						description: 'PNG file',
+						accept: {'image/png': ['.png']},
+					}],
+				}).then(handle => {
+					return handle.createWritable();
+				}).then(writableStream => {
+					return writableStream.write(blob).then(()=> writableStream.close());
+				}).catch(error => {
+					if(!(error instanceof DOMException))
+					{
+						console.error(error);
+					}
+				}).finally(() => {
+					this.args.rendered = '';
 				});
 
-			}, {once:true});
+			});
 
-		});
+		}, {once:true});
 	}
 
 	delete(event, stamp)

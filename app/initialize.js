@@ -1,27 +1,17 @@
 import { Bindable } from 'curvature/base/Bindable';
 import { View } from 'curvature/base/View';
-import { Bag } from 'curvature/base/Bag';
 
-import { MapView }  from './MapView';
-import { PoolView } from './PoolView';
+import { Application }  from './Application';
 
 document.addEventListener('DOMContentLoaded', function() {
 
-	const grids = new Map;
+	const app = new Application;
 
-	const pool = new PoolView;
-	const maps = View.from(`<div><div cv-each="maps:map">[[map]]</div><input type = "file" cv-on = "change"></div>`);
+	app.pool.render(document.body);
+	app.maps.render(document.body);
 
-	maps.args.maps = new Bag;
+	setTimeout(() => [
 
-	maps.change = event => {
-		let reader = new FileReader();
-		reader.onload = event => maps.args.maps.add(new MapView({map:event.target.result}, grids));
-		reader.readAsDataURL(event.target.files[0]);
-		event.target.value = null;
-	};
-
-	pool.onTimeout(500, () => pool.args.stamps.push(
 		{ id: 1,  grid: 'CONQ001', x:  25, y: 25 },
 		{ id: 2,  grid: 'CONQ002', x:  18, y: 16 },
 		{ id: 3,  grid: 'CONQ003', x:  19, y: 25 },
@@ -32,18 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		{ id: 8,  grid: 'CONQ008', x:  4,  y: 7  },
 		{ id: 9,  grid: 'CONQ009', x:  6,  y: 10 },
 		{ id: 10, grid: 'CONQ010', x:  4,  y: 9  },
-	));
+		{ id: 11, grid: 'CONQ011', x:  4,  y: 4  },
 
-	pool.args.stamps.bindTo((v,k,t,d,p) => grids.set(v.grid, v));
-
-	const crosshair = new Image();
-	crosshair.src = '/crosshairs.png';
-
-	pool.dragstart = (event, stamp) => {
-		event.dataTransfer.setDragImage(crosshair, 15, 15);
-		event.dataTransfer.setData('text/plain', stamp.grid);
-	};
-
-	pool.render(document.body);
-	maps.render(document.body);
+	].map(stamp => app.stamps.add(stamp)), 500);
 });
