@@ -1,1 +1,140 @@
-body,html{height:100%;margin:0}body{display:flex;flex-direction:row}div.stamp-pool-list{display:flex;flex-direction:column;overflow:auto;position:sticky;top:0}div.stamp-pool-item{position:relative;display:flex;flex-direction:row;user-select:none}div.stamp-pool-item[data-used=true]{color:grey}div.map-list{overflow:auto;position:sticky;top:0;flex:1}div.map{overflow:hidden}div.map-holder{position:relative;background-image:var(--map);background-size:contain;background-position:center;background-repeat:no-repeat;width:calc(1px * var(--width));height:calc(1px * var(--height));margin:auto}div.map-tag{--unit:4px;position:absolute;background-color:#0f0;left:calc(100% * var(--l));top:calc(100% * var(--t));width:calc(calc(var(--unit) * var(--x)) * var(--scale));height:calc(calc(var(--unit) * var(--y)) * var(--scale));transform:rotate(calc(360deg * var(--rotation))) scale(1);transform-origin:0 0;display:flex;justify-content:center;align-items:center;font-size:1.5rem;border:1px solid #000}div.map-tag button{position:absolute;top:-.75em;right:-.75em;border:0;width:1.5em;height:1.5em;border-radius:50%;padding:0;background-color:#000;display:none;background-image:url(/x.svg);background-repeat:no-repeat;background-size:50%;background-position:center}div.map-tag:hover button{display:initial}div.map-controls{display:flex;flex-direction:column}div.map-controls label{display:flex;flex-direction:row}div.map-controls label span{min-width:5em;text-align:right}div.map-controls input[type=number]{width:5em;text-align:right}div.map-controls input[type=range]{flex:1}div.map-buttons button{margin:.5rem}div.map-buttons{display:flex;flex-direction:row;justify-content:space-between}html div.map>canvas,html div.map>img{display:none}div.map>svg{width:calc(1px * var(--width));height:calc(1px * var(--height))}div.map>img{width:calc(1px * var(--width));height:calc(1px * var(--height))}
+html, body {
+	height: 100%;
+	margin: 0;
+}
+
+body {
+	display: flex;
+	flex-direction: row;
+}
+
+div.stamp-pool-list {
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+	position: sticky;
+	top: 0;
+}
+
+div.stamp-pool-item {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	user-select: none;
+}
+
+div.stamp-pool-item[data-used=true] {
+	color: grey;
+}
+
+div.map-list {
+	overflow: auto;
+	position: sticky;
+	top: 0;
+	flex: 1;
+}
+
+div.map {
+	overflow: hidden;
+}
+
+div.map-holder {
+	position: relative;
+	background-image :var(--map);
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: calc(1px * var(--width));
+	height: calc(1px * var(--height));
+	margin: auto;
+}
+
+div.map-tag {
+	--unit: 4px;
+	position: absolute;
+	background-color: #0f0;
+	left: calc(100% * var(--l));
+	top: calc(100% * var(--t));
+	width: calc(calc(var(--unit) * var(--x)) * var(--scale));
+	height: calc(calc(var(--unit) * var(--y)) * var(--scale));
+	transform: rotate(calc(360deg * var(--rotation))) scale(1);
+	transform-origin: 0 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5rem;
+	border: 1px solid black;
+
+}
+
+div.map-tag button {
+	position: absolute;
+	top: -0.75em;
+	right: -0.75em;
+	border: 0;
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 50%;
+	padding: 0;
+	background-color: black;
+	display: none;
+	background-image: url(/x.svg);
+	background-repeat: no-repeat;
+	background-size: 50%;
+	background-position: center;
+}
+
+div.map-tag:hover button {
+	display: initial;
+}
+
+div.map-controls {
+	display: flex;
+	flex-direction: column;
+}
+
+div.map-controls label {
+	display: flex;
+	flex-direction: row;
+}
+
+div.map-controls label span {
+	min-width: 5em;
+	text-align: right;
+}
+div.map-controls input[type=number] {
+	width: 5em;
+	text-align: right;
+}
+
+div.map-controls input[type=range] {
+	flex: 1;
+}
+
+div.map-buttons button {
+	margin: 0.5rem;
+}
+
+div.map-buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+html div.map > img,
+html div.map > canvas {
+	display: none;
+}
+
+div.map > svg {
+	width: calc(1px * var(--width));
+	height: calc(1px * var(--height));
+}
+
+div.map > img {
+	width: calc(1px * var(--width));
+	height: calc(1px * var(--height));
+}
+
+
+/*# sourceMappingURL=app.css.map*/
