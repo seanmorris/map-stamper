@@ -23,6 +23,15 @@ div.stamp-pool-item {
 	user-select: none;
 }
 
+div.stamp-pool-item [data-active="only"] {
+	display: none;
+}
+div.stamp-pool-item:focus-within [data-active="only"],
+div.stamp-pool-item:focus [data-active="only"],
+div.stamp-pool-item:active [data-active="only"] {
+	display: initial;
+}
+
 div.stamp-pool-item[data-used=true] {
 	color: grey;
 }
@@ -52,7 +61,7 @@ div.map-holder {
 div.map-tag {
 	--unit: 4px;
 	position: absolute;
-	background-color: #0f0;
+	background-color: var(--c, #0f0);
 	left: calc(100% * var(--l));
 	top: calc(100% * var(--t));
 	width: calc(calc(var(--unit) * var(--x)) * var(--scale));

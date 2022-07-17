@@ -1,6 +1,7 @@
 <div class = "stamp-pool-list" cv-each = "stamps:stamp">
-	<div class = "stamp-pool-item" draggable = "true" cv-on = "dragstart(event, stamp);" data-used = "[[stamp.used]]">
+	<div class = "stamp-pool-item" draggable = "true" cv-on = "dragstart(event, stamp);" data-used = "[[stamp.used]]"  tabindex="0">
 		<p>([[stamp.id]])</p>
 		<p>[[stamp.grid]]</p>
+		<p data-active = "only"><input type = "color" cv-bind = "stamp.c"></p>
 	</div>
 </div>

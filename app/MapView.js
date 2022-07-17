@@ -86,6 +86,7 @@ export class MapView extends View
 		stamp.t = (event.clientY + -mapRect.y + -15) / mapRect.height;
 
 		stamp.r = stamp.r ?? 0;
+		stamp.c = stamp.c ?? '#00FF00';
 
 		this.args.tags.add(stamp);
 	}
