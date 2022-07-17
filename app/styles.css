@@ -123,7 +123,7 @@ div.map-buttons {
 
 html div.map > img,
 html div.map > canvas {
-	display: none;
+	/*display: none;*/
 }
 
 div.map > svg {

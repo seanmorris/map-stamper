@@ -1,5 +1,5 @@
 <div class = "map" style = "--width:[[width]];--height:[[height]];">
-	<svg xmlns="http://www.w3.org/2000/svg" cv-ref = "svg">
+	<svg xmlns="http://www.w3.org/2000/svg" width = "[[width]]" height = "[[height]]" cv-ref = "svg">
 		<foreignobject x="0" y="0" width = "100%" height = "100%">
 			<div class = "map" xmlns="http://www.w3.org/1999/xhtml" style = "--width:[[width]];--height:[[height]];">
 				<div class = "map-holder" style = "--map:url([[map]]); --rotation:[[rotation]]; --scale:[[scale]];" cv-on = "drop;dragover;" cv-ref = "map" xmlns="http://www.w3.org/1999/xhtml">
@@ -23,7 +23,10 @@
 </div>
 
 <div class = "map-buttons">
-	<button cv-on = "click:saveImage">save</button>
+	<div>
+		<button cv-on = "click:viewImage">view</button>
+		<button cv-on = "click:saveImage">save</button>
+	</div>
 	<button cv-on = "click:reset">reset</button>
 </div>
 

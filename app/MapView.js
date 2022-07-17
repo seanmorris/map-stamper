@@ -94,7 +94,7 @@ export class MapView extends View
 		this.args.scale = 1;
 	};
 
-	saveImage()
+	renderImage()
 	{
 		const svg = this.tags.svg.cloneNode(true);
 
@@ -118,18 +118,38 @@ export class MapView extends View
 
 		const image = this.tags.image;
 
-		image.node.addEventListener('load', event => {
+		return new Promise(accept => {
+			image.node.addEventListener('load', event => {
 
-			const canvas = this.tags.canvas;
+				const canvas  = this.tags.canvas;
+				const context = canvas.getContext('2d');
 
-			const context = canvas.getContext('2d');
+				context.clearRect(0, 0, canvas.width, canvas.height);
+				context.drawImage(image.node, 0, 0);
 
-			context.clearRect(0, 0, canvas.width, canvas.height);
+				canvas.toBlob(blob => accept(blob));
+			});
+		});
+	}
 
-			context.drawImage(image.node, 0, 0);
+	viewImage()
+	{
+		this.renderImage().then(blob => {
+			const url = URL.createObjectURL(blob);
 
-			canvas.toBlob(blob => {
-				showSaveFilePicker({
+			window.open(url);
+
+			this.args.rendered = '';
+		});
+	}
+
+	saveImage()
+	{
+		this.renderImage().then(blob => {
+
+			if(globalThis.showSaveFilePicker)
+			{
+				globalThis.showSaveFilePicker({
 					suggestedName: 'grid-locations.png',
 					types: [{
 						description: 'PNG file',
@@ -144,9 +164,20 @@ export class MapView extends View
 					}
 				}).finally(() => this.args.rendered = '');
 
-			});
+				return;
+			}
 
-		}, {once:true});
+			const link = document.createElement('a');
+
+			link.setAttribute('download', 'grid-locations.png');
+			link.setAttribute('href', URL.createObjectURL(blob));
+
+			console.log(link);
+
+			link.click();
+
+			this.args.rendered = '';
+		});
 	}
 
 	delete(event, stamp)
