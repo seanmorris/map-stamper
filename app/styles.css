@@ -26,10 +26,17 @@ div.stamp-pool-item {
 div.stamp-pool-item [data-active="only"] {
 	display: none;
 }
+
 div.stamp-pool-item:focus-within [data-active="only"],
 div.stamp-pool-item:focus [data-active="only"],
 div.stamp-pool-item:active [data-active="only"] {
 	display: initial;
+}
+
+div.stamp-pool-item:focus-within [data-active="invert"],
+div.stamp-pool-item:focus [data-active="invert"],
+div.stamp-pool-item:active [data-active="invert"] {
+	display: none;
 }
 
 div.stamp-pool-item[data-used=true] {
