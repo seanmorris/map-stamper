@@ -90,8 +90,6 @@ export class MapView extends View
 	{
 		this.args.rotation = 0;
 		this.args.scale = 1;
-		this.args.panX  = 0;
-		this.args.panY  = 0;
 	};
 
 	saveImage()
@@ -135,18 +133,14 @@ export class MapView extends View
 						description: 'PNG file',
 						accept: {'image/png': ['.png']},
 					}],
-				}).then(handle => {
-					return handle.createWritable();
-				}).then(writableStream => {
-					return writableStream.write(blob).then(()=> writableStream.close());
-				}).catch(error => {
+				}).then(handle => handle.createWritable()
+				).then(writableStream => writableStream.write(blob).then(() => writableStream.close())
+				).catch(error => {
 					if(!(error instanceof DOMException))
 					{
 						console.error(error);
 					}
-				}).finally(() => {
-					this.args.rendered = '';
-				});
+				}).finally(() => this.args.rendered = '');
 
 			});
 
