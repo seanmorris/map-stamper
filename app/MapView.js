@@ -20,7 +20,7 @@ export class MapView extends View
 		this.args.tags     = new Bag;
 		this.args.width    = 773;
 		this.args.width    = 773;
-		this.args.visible  = true;
+		this.args.visible  = this.args.visible ?? true;
 
 		const elicitor = new Elicit(this.args.map);
 

@@ -15,10 +15,11 @@ div.stamp-pool-list {
 	overflow: auto;
 	position: sticky;
 	top: 0;
+	min-width: 160px;
 }
 
 div.stamp-pool-item {
-	padding: 0.5rem;
+	padding-right: 1rem;
 }
 
 div.stamp-pool-item div {
@@ -57,13 +58,12 @@ div.stamp-pool-item .indicator {
 
 div.map-list {
 	overflow: auto;
-	position: sticky;
+	position: relative;
 	top: 0;
 	flex: 1;
 }
 
 div.map-holder {
-	position: relative;
 	background-image :var(--map);
 	background-size: contain;
 	background-position: center;
@@ -175,12 +175,16 @@ div.map-buttons button {
 }
 
 div.map-buttons {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+	position: sticky;
+	bottom: 0;
+	left: 0;
+	z-index: 2;
+	background-color: white;
 }
 
-div.maps [data-visible=false] {
+div.map[data-visible=false],
+div.map-buttons[data-visible=false],
+div.map-controls[data-visible=false] {
 	display: none;
 }
 
@@ -214,6 +218,11 @@ div.map-list .tabs {
 	flex-direction: row;
 	margin-top: 0.25rem;
 	margin-bottom: 0.25rem;
+	position: sticky;
+	left: 0;
+	top: 0;
+	z-index: 2;
+	background-color: white;
 }
 
 div.map-list .tabs input {

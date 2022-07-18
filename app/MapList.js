@@ -43,6 +43,8 @@ export class MapList extends View
 				continue;
 			}
 
+			console.log(map);
+
 			map.args.visible = false;
 		}
 	}
