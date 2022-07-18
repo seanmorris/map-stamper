@@ -1,4 +1,11 @@
 <div class = "map-list">
-	<div cv-each="maps:map">[[map]]</div>
-	<input type = "file" cv-on = "change">
+	<div class = "tabs">
+		<div class = "tabs" cv-each="maps:map:m">
+			<div data-visible = "[[map.args.visible]]" class = "tab" cv-on = "click:switchTo(event, map);">[[m]]</div>
+		</div>
+		<input type = "file" cv-on = "change">
+	</div>
+	<div class = "maps" cv-each="maps:map">
+		<div data-visible = "[[map.args.visible]]">[[map]]</div>
+	</div>
 </div>

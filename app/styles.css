@@ -6,6 +6,7 @@ html, body {
 body {
 	display: flex;
 	flex-direction: row;
+	font-family: sans-serif;
 }
 
 div.stamp-pool-list {
@@ -17,6 +18,10 @@ div.stamp-pool-list {
 }
 
 div.stamp-pool-item {
+	padding: 0.5rem;
+}
+
+div.stamp-pool-item div {
 	position: relative;
 	display: flex;
 	flex-direction: row;
@@ -27,15 +32,11 @@ div.stamp-pool-item [data-active="only"] {
 	display: none;
 }
 
-div.stamp-pool-item:focus-within [data-active="only"],
-div.stamp-pool-item:focus [data-active="only"],
-div.stamp-pool-item:active [data-active="only"] {
+div.stamp-pool-item[data-active=true] [data-active="only"] {
 	display: initial;
 }
 
-div.stamp-pool-item:focus-within [data-active="invert"],
-div.stamp-pool-item:focus [data-active="invert"],
-div.stamp-pool-item:active [data-active="invert"] {
+div.stamp-pool-item[data-active=true] [data-active="invert"] {
 	display: none;
 }
 
@@ -43,15 +44,22 @@ div.stamp-pool-item[data-used=true] {
 	color: grey;
 }
 
+div.stamp-pool-item .indicator {
+	display: inline-block;
+	color: black;
+	width: 1.5rem;
+	height: 1.5rem;
+	text-align: center;
+	vertical-align: baseline;
+	margin-right: 0.5rem;
+	margin-left: 0.5rem;
+}
+
 div.map-list {
 	overflow: auto;
 	position: sticky;
 	top: 0;
 	flex: 1;
-}
-
-div.map {
-	overflow: hidden;
 }
 
 div.map-holder {
@@ -135,7 +143,7 @@ div.map-tag button[data-type="rotate-right"] {
 	height: 2em;
 }
 
-div.map-tag:hover button {
+html div.map-tag[data-active=true] button {
 	display: initial;
 }
 
@@ -172,6 +180,10 @@ div.map-buttons {
 	justify-content: space-between;
 }
 
+div.maps [data-visible=false] {
+	display: none;
+}
+
 html div.map {
 	position: relative;
 }
@@ -184,6 +196,7 @@ html div.map > canvas {
 	left: 0;
 }
 
+
 div.map > svg {
 	position: relative;
 	width: calc(1px * var(--width));
@@ -194,4 +207,27 @@ div.map > svg {
 div.map > img {
 	width: calc(1px * var(--width));
 	height: calc(1px * var(--height));
+}
+
+div.map-list .tabs {
+	display: flex;
+	flex-direction: row;
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
+}
+
+div.map-list .tabs input {
+	padding: 1rem;
+}
+
+div.map-list .tabs .tab {
+	padding: 1rem;
+	border: 1px solid black;
+	margin-right: -1px;
+	transition: 0.5s ease-in all;
+}
+
+div.map-list .tabs .tab[data-visible=true] {
+	background-color: black;
+	color: white;
 }

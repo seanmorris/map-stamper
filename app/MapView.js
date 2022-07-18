@@ -14,12 +14,13 @@ export class MapView extends View
 
 		this.grids = grids;
 
-		this.args.map      = this.args.map      ?? '/sample-floorplan.jpg';
+		this.args.map      = this.args.map;
 		this.args.rotation = this.args.rotation ?? 0;
 		this.args.scale    = this.args.scale    ?? 1;
 		this.args.tags     = new Bag;
 		this.args.width    = 773;
-		this.args.height   = 580;
+		this.args.width    = 773;
+		this.args.visible  = true;
 
 		const elicitor = new Elicit(this.args.map);
 
@@ -73,6 +74,16 @@ export class MapView extends View
 		event.preventDefault();
 	}
 
+	activate(event, stamp)
+	{
+		for(const [name,stamp] of this.grids)
+		{
+			stamp.active = false;
+		}
+
+		stamp.active = true;
+	}
+
 	drop(event)
 	{
 		event.preventDefault();
@@ -95,7 +106,17 @@ export class MapView extends View
 	{
 		this.args.rotation = 0;
 		this.args.scale = 1;
-	};
+	}
+
+	resetRotation(event)
+	{
+		this.args.rotation = 0;
+	}
+
+	resetScale(event)
+	{
+		this.args.scale = 1;
+	}
 
 	renderImage()
 	{

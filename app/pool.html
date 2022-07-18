@@ -1,8 +1,15 @@
 <div class = "stamp-pool-list" cv-each = "stamps:stamp">
-	<div class = "stamp-pool-item" draggable = "true" cv-on = "dragstart(event, stamp);" data-used = "[[stamp.used]]"  tabindex="0">
-		<p>([[stamp.id]])</p>
-		<p>[[stamp.grid]]</p>
-		<p data-active = "invert"><span style = "background-color: [[stamp.c]]">&nbsp;</span></p>
-		<p data-active = "only"><input type = "color" cv-bind = "stamp.c"></p>
+	<div class = "stamp-pool-item" draggable = "true" cv-on = "dragstart(event, stamp);click:activate(event, stamp)" tabindex="0" data-used = "[[stamp.used]]" data-active = "[[stamp.active]]">
+		<div>
+			<p><span class = "indicator" style = "background-color: [[stamp.c]]">[[stamp.id]]</span></p>
+			<p></p>
+			<p>[[stamp.grid]]</p>
+		</div>
+		<p data-active = "only">
+			<input type = "color" cv-bind = "stamp.c">
+			<span cv-if = "stamp.map">
+				<button cv-on = "click:jump(event, stamp)">go</button>
+			</span>
+		</p>
 	</div>
 </div>

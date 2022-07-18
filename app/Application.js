@@ -9,7 +9,7 @@ export class Application
 		this.grids  = new Map;
 		this.stamps = new Bag;
 
-		this.pool = new PoolView({stamps:this.stamps});
+		this.pool = new PoolView({stamps:this.stamps}, this.grids);
 		this.maps = new MapList({}, this.grids);
 
 		this.stamps.addEventListener(

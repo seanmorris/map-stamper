@@ -6,7 +6,8 @@
 					<div cv-each = "tags:stamp:t" xmlns="http://www.w3.org/1999/xhtml">
 						<div class = "map-tag"
 							draggable = "true"
-							cv-on = "dragstart(event, stamp);"
+							data-active = "[[stamp.active]]"
+							cv-on = "dragstart(event, stamp);click:activate(event, stamp)"
 							style = "--x:[[stamp.x]];--y:[[stamp.y]];--l:[[stamp.l]];--t:[[stamp.t]];--r:[[stamp.r]];--c:[[stamp.c]];" xmlns="http://www.w3.org/1999/xhtml">
 							<p xmlns="http://www.w3.org/1999/xhtml">[[stamp.id]]</p>
 							<button data-type = "close" xmlns="http://www.w3.org/1999/xhtml" cv-on = "click:delete(event, stamp)"></button>
@@ -29,7 +30,6 @@
 		<button cv-on = "click:viewImage">view</button>
 		<button cv-on = "click:saveImage">save</button>
 	</div>
-	<button cv-on = "click:reset">reset</button>
 </div>
 
 <div class = "map-controls">
@@ -37,10 +37,12 @@
 		<span>rotation</span>
 		<input type = "range" cv-bind = "rotation" min =  "-0.25" max = "0.25" step = "0.001">
 		<input type = "number" cv-bind = "rotation" min =  "-0.25" max = "0.25" step = "0.001">
+		<button cv-on = "click:resetRotation">reset</button>
 	</label>
 	<label>
 		<span>scale</span>
 		<input type = "range" cv-bind = "scale"    min =  "0" max = "3" step = "0.001">
 		<input type = "number" cv-bind = "scale"    min =  "0" max = "3" step = "0.001">
+		<button cv-on = "click:resetScale">reset</button>
 	</label>
 </div>
