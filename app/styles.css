@@ -82,7 +82,7 @@ div.map-tag {
 	width: calc(calc(var(--unit) * var(--x)) * var(--scale));
 	height: calc(calc(var(--unit) * var(--y)) * var(--scale));
 	transform: rotate(calc(360deg * calc(var(--rotation,0) + var(--r,0)))) scale(1);
-	transition: transform 0.2s ease-out;
+	transition: transform 0.1s ease-out;
 	transform-origin: 0 0;
 	display: flex;
 	justify-content: center;
@@ -111,12 +111,12 @@ div.map-tag button[data-type="close"] {
 	width: 2em;
 	height: 2em;
 	transform: rotate(calc(-360deg * calc(var(--rotation,0) + var(--r,0)))) scale(1);
-	transition: transform 0.2s ease-out;
+	transition: transform 0.1s ease-out;
 }
 
 div.map-tag .buttons {
 	transform: rotate(calc(-360deg * calc(var(--rotation,0) + var(--r,0)))) scale(1);
-	transition: transform 0.2s ease-out;
+	transition: transform 0.1s ease-out;
 	position: absolute;
 	top: -1rem;
 	left: -2rem;
@@ -124,7 +124,7 @@ div.map-tag .buttons {
 
 div.map-tag p {
 	transform: rotate(calc(-360deg * calc(var(--rotation,0) + var(--r,0)))) scale(1);
-	transition: transform 0.2s ease-out;
+	transition: transform 0.1s ease-out;
 }
 
 div.map-tag button[data-type="rotate-left"] {
@@ -233,7 +233,7 @@ div.map-list .tabs .tab {
 	padding: 1rem;
 	border: 1px solid black;
 	margin-right: -1px;
-	transition: 0.5s ease-in all;
+	transition: 0.1s ease-in all;
 }
 
 div.map-list .tabs .tab[data-visible=true] {

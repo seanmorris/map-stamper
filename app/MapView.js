@@ -1,6 +1,7 @@
 import { View } from 'curvature/base/View';
 import { Bag } from 'curvature/base/Bag';
 import { Elicit } from 'curvature/net/Elicit';
+import { Keyboard } from 'curvature/input/Keyboard';
 
 export class MapView extends View
 {
@@ -21,6 +22,52 @@ export class MapView extends View
 		this.args.width    = 773;
 		this.args.width    = 773;
 		this.args.visible  = this.args.visible ?? true;
+
+		this.activeStamp   = null;
+
+		const keyboard = Keyboard.get();
+
+		let adjust = 0.001;
+
+		keyboard.keys.bindTo('Shift', v => {
+			adjust = v > 0 ? 0.01 : 0.001;
+		});
+
+		keyboard.keys.bindTo('Control', v => {
+			adjust = v > 0 ? 0.0001 : 0.001;
+		});
+
+		const pause = 20;
+
+		keyboard.keys.bindTo('ArrowRight', v => {
+			if(!this.activeStamp || !this.args.visible || v <= 0) return;
+			if(v > 1 && v < pause) return;
+			this.activeStamp.l += adjust;
+		});
+
+		keyboard.keys.bindTo('ArrowLeft', v => {
+			if(!this.activeStamp || !this.args.visible|| v <= 0) return;
+			if(v > 1 && v < pause) return;
+			this.activeStamp.l -= adjust;
+		});
+
+		keyboard.keys.bindTo('ArrowDown', v => {
+			if(!this.activeStamp || !this.args.visible || v <= 0) return;
+			if(v > 1 && v < pause) return;
+			this.activeStamp.t += adjust;
+		});
+
+		keyboard.keys.bindTo('ArrowUp', v => {
+			if(!this.activeStamp || !this.args.visible|| v <= 0) return;
+			if(v > 1 && v < pause) return;
+			this.activeStamp.t -= adjust;
+		});
+
+		keyboard.listening = true;
+
+		this.onRemove(() => keyboard.listening = false);
+
+		this.onFrame(() => keyboard.update());
 
 		const elicitor = new Elicit(this.args.map);
 
@@ -82,6 +129,8 @@ export class MapView extends View
 		}
 
 		stamp.active = true;
+
+		this.activeStamp = stamp;
 	}
 
 	drop(event)
@@ -100,6 +149,9 @@ export class MapView extends View
 		stamp.c = stamp.c ?? '#00FF00';
 
 		this.args.tags.add(stamp);
+
+		this.activeStamp = stamp;
+
 	}
 
 	reset(event)
